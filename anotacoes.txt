@@ -1,0 +1,35 @@
+Uma forma de pegar os dados do retorno de uma URL (já convertida em json):
+let livros = []
+const endpointDaAPI = 'https://guilhermeonrails.github.io/casadocodigo/livros.json'
+getBuscarLivrosDaAPI()
+
+async function getBuscarLivrosDaAPI() {
+    const res = await fetch(endpointDaAPI)
+    livros = await res.json()
+    console.log(livros) 
+}
+
+utilização do forEach:
+    listaDeLivros.array.forEach(element => {
+        
+    });
+
+a função map retorna um novo array (não altera o valor do array original), diferente do forEach o map retorna um valor. Para utilizar é só:
+livros.map(livro => {
+         return {...livro, preco: livro.preco - (livro.preco * desconto)} // os tres pontos servem para copiar tudo que está no objeto e altera o valor de preço
+    })
+
+Além de importar um script js para outro é possível importar todos no html e eles conversam entre si
+
+livro.preco.toFixed(2) -> arredonda o valor na quantidade de casas decimais especificada
+
+o filter cria um novo array filtrando os dados com base no valor booleano retornado dentro dele:
+livros.filter(livro => livro.categoria == categoria)
+
+o sort transforma os elementos em string antes de fazer a ordenação, por isso podem ter erros na hora de ordenar a lista. Para que a lista fique certa é preciso passar uma função dentro do sort
+livros.sort((a, b) => a - b) //Para inverter a ordem é só fazer b - a
+
+Para o reduce ele executa uma função apra cada elemento do array e retorna só um valor:
+livros.reduce((acc, livro) => acc + livro.preco, 0).toFixed(2) // o acc é onde o valor é armazenado e o 0 é o valor inicial
+Não precisa só somar todos, da para fazer verificações dentro do reduce e retornar o maior valor por exemplo
+livros.reduce((acc, livro) => acc > livro.preco ? acc : livro.preco)
